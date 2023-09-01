@@ -2,40 +2,40 @@ package com.thejobslk.dao;
 
 import java.util.List;
 
-import com.thejobslk.model.Appointment;
+import com.thejobslk.model.Consultant;
 
-public class AppointmentManagerImpl implements AppointmentManager {
+public class ConsultantManagerImpl implements ConsultantManager {
 
-  public AppointmentManagerImpl() {
+  public ConsultantManagerImpl() {
     // TODO Auto-generated constructor stub
   }
 
   @Override
-  public boolean addAppointment(Appointment appointment) {
+  public boolean addConsultant(Consultant consultant) {
     // TODO Auto-generated method stub
     return false;
   }
 
   @Override
-  public boolean editAppointment(Appointment appointment) {
+  public boolean editConsultant(Consultant consultant) {
     // TODO Auto-generated method stub
     return false;
   }
 
   @Override
-  public boolean deleteAppointment(int appointmentId) {
+  public boolean deleteConsultant(int consultantId) {
     // TODO Auto-generated method stub
     return false;
   }
 
   @Override
-  public Appointment getAppointment(int appointmentId) {
+  public Consultant getConsultant(int consultantId) {
     // TODO Auto-generated method stub
     return null;
   }
 
   @Override
-  public List<Appointment> getAllAppointments() {
+  public List<Consultant> getAllConsultants() {
     // TODO Auto-generated method stub
     return null;
   }
