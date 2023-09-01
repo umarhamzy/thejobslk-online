@@ -1,5 +1,17 @@
 package com.thejobslk.dao;
 
-public interface AppointmentManager {
+import java.util.List;
 
+import com.thejobslk.model.Appointment;
+
+public interface AppointmentManager {
+  public boolean addAppointment(Appointment appointment);
+
+  public boolean editAppointment(Appointment appointment);
+
+  public boolean deleteAppointment(int appointmentId);
+
+  public boolean getAppointment(int appointmentId);
+
+  public List<Appointment> getAllAppointments();
 }
