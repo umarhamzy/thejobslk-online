@@ -7,11 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.thejobslk.service.AppointmentService;
+
 /**
  * Servlet implementation class AppointmentController
  */
 public class AppointmentController extends HttpServlet {
   private static final long serialVersionUID = 1L;
+
+  private AppointmentService getAppointmentService() {
+    return AppointmentService.getAppointmentService();
+  }
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,7 +29,11 @@ public class AppointmentController extends HttpServlet {
     String actionType = "";
 
     if (actionType.equals("add")) {
-
+      addAppointment(request, response);
+    } else if (actionType.equals("edit")) {
+      editAppointment(request, response);
+    } else if (actionType.equals("delete")) {
+      deleteAppointment(request, response);
     }
   }
 
