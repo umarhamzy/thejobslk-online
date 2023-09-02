@@ -1,5 +1,6 @@
 package com.thejobslk.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.thejobslk.dao.AppointmentManager;
@@ -30,23 +31,23 @@ public class AppointmentService {
     return new AppointmentManagerImpl();
   }
 
-  public boolean addAppointment(Appointment appointment) {
+  public boolean addAppointment(Appointment appointment) throws SQLException {
     return getAppointmentManager().addAppointment(appointment);
   }
 
-  public boolean editAppointment(Appointment appointment) {
+  public boolean editAppointment(Appointment appointment) throws SQLException {
     return getAppointmentManager().editAppointment(appointment);
   }
 
-  public boolean deleteAppointment(int appointmentId) {
+  public boolean deleteAppointment(int appointmentId) throws SQLException {
     return getAppointmentManager().deleteAppointment(appointmentId);
   }
 
-  public Appointment getAppointment(int appointmentId) {
+  public Appointment getAppointment(int appointmentId) throws SQLException {
     return getAppointmentManager().getAppointment(appointmentId);
   }
 
-  public List<Appointment> getAllAppointments() {
+  public List<Appointment> getAllAppointments() throws SQLException {
     return getAppointmentManager().getAllAppointments();
   }
 
