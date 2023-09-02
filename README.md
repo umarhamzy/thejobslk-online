@@ -1,6 +1,6 @@
 # Company Name
 
-thejobslk-online
+The Jobs
 
 # Description
 
