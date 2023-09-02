@@ -29,7 +29,7 @@ public class AppointmentManagerImpl implements AppointmentManager {
   public boolean addAppointment(Appointment appointment) throws SQLException, ClassNotFoundException {
     Connection connection = getConnection();
 
-    String query = "INSERT INTO appointment (appointment_country, appointment_job, appointment_date, appointment_time, appointment_description, jobseeker_id, consultant_id VALUES (?, ?, ?, ?, ?, ?, ?)";
+    String query = "INSERT INTO appointment (appointment_country, appointment_job, appointment_date, appointment_time, appointment_description, jobseeker_id, consultant_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     // Using PreparedStatement instead of normal Statement to prevent SQL injection
     PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -39,8 +39,9 @@ public class AppointmentManagerImpl implements AppointmentManager {
     preparedStatement.setString(3, appointment.getAppointmentDate());
     preparedStatement.setString(4, appointment.getAppointmentTime());
     preparedStatement.setString(5, appointment.getAppointmentDescription());
-    preparedStatement.setInt(6, appointment.getJobseekerId());
-    preparedStatement.setInt(7, appointment.getConsultantId());
+    preparedStatement.setInt(6, 1);
+    preparedStatement.setInt(7, 1);
+    // Above 2 statements hardcoded till concrete implementation - TO BE REMOVED!
 
     boolean result = false;
     if (preparedStatement.executeUpdate() > 0) {
