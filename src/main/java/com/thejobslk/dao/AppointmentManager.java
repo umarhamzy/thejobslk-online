@@ -7,13 +7,13 @@ import com.thejobslk.model.Appointment;
 
 public interface AppointmentManager {
 
-  public boolean addAppointment(Appointment appointment) throws SQLException;
+  public boolean addAppointment(Appointment appointment) throws SQLException, ClassNotFoundException;
 
-  public boolean editAppointment(Appointment appointment) throws SQLException;
+  public boolean editAppointment(Appointment appointment) throws SQLException, ClassNotFoundException;
 
-  public boolean deleteAppointment(int appointmentId) throws SQLException;
+  public boolean deleteAppointment(int appointmentId) throws SQLException, ClassNotFoundException;
 
-  public Appointment getAppointment(int appointmentId) throws SQLException;
+  public Appointment getAppointment(int appointmentId) throws SQLException, ClassNotFoundException;
 
-  public List<Appointment> getAllAppointments() throws SQLException;
+  public List<Appointment> getAllAppointments() throws SQLException, ClassNotFoundException;
 }

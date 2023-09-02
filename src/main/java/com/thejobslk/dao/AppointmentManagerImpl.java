@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.thejobslk.dao.dbutil.DbDriverManager;
+import com.thejobslk.dao.dbutil.DbDriverManagerFactory;
 import com.thejobslk.model.Appointment;
 
 public class AppointmentManagerImpl implements AppointmentManager {
@@ -16,13 +18,15 @@ public class AppointmentManagerImpl implements AppointmentManager {
     // TODO Auto-generated constructor stub
   }
 
-  private Connection getConnection() {
+  private Connection getConnection() throws ClassNotFoundException, SQLException {
+    DbDriverManagerFactory driverFactory = new DbDriverManagerFactory();
+    DbDriverManager driverManager = driverFactory.getDbDriver("MySQL");
 
-    return null;
+    return driverManager.getConnection();
   }
 
   @Override
-  public boolean addAppointment(Appointment appointment) throws SQLException {
+  public boolean addAppointment(Appointment appointment) throws SQLException, ClassNotFoundException {
     Connection connection = getConnection();
 
     String query = "INSERT INTO appointment (appointment_country, appointment_job, appointment_date, appointment_time, appointment_description, jobseeker_id, consultant_id VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -50,7 +54,7 @@ public class AppointmentManagerImpl implements AppointmentManager {
   }
 
   @Override
-  public boolean editAppointment(Appointment appointment) throws SQLException {
+  public boolean editAppointment(Appointment appointment) throws SQLException, ClassNotFoundException {
     Connection connection = getConnection();
 
     String query = "UPDATE appointment SET appointment_country=?, appointment_job=?, appointment_date=?, appointment_time=?, appointment_description=?, jobseeker_id=?, consultant_id=? WHERE appointment_id=?";
@@ -79,7 +83,7 @@ public class AppointmentManagerImpl implements AppointmentManager {
   }
 
   @Override
-  public boolean deleteAppointment(int appointmentId) throws SQLException {
+  public boolean deleteAppointment(int appointmentId) throws SQLException, ClassNotFoundException {
     Connection connection = getConnection();
 
     String query = "DELETE FROM appointment WHERE appointment_id=?";
@@ -101,7 +105,7 @@ public class AppointmentManagerImpl implements AppointmentManager {
   }
 
   @Override
-  public Appointment getAppointment(int appointmentId) throws SQLException {
+  public Appointment getAppointment(int appointmentId) throws SQLException, ClassNotFoundException {
     Connection connection = getConnection();
 
     String query = "SELECT * FROM appointment WHERE appointment_id=?";
@@ -132,7 +136,7 @@ public class AppointmentManagerImpl implements AppointmentManager {
   }
 
   @Override
-  public List<Appointment> getAllAppointments() throws SQLException {
+  public List<Appointment> getAllAppointments() throws SQLException, ClassNotFoundException {
     Connection connection = getConnection();
 
     String query = "SELECT * FROM appointment";
