@@ -6,6 +6,7 @@
 <html lang="en">
   <head>
     <meta charset="ISO-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>The Jobs | Search and Update Appointment</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="styles/appointment.css"> -->
@@ -82,7 +83,7 @@
               class="form-control mb-3" placeholder="Is there anything you'd like to say? (Optional)"><c:out value="${appointment.getAppointmentDescription()}"></c:out></textarea>
               
               <input type="hidden" name="actiontype" value="edit-appointment"/>
-              <button type="submit" class="btn btn-dark py-3">Save changes</button>
+              <button type="submit" id="submit-btn" class="btn btn-dark py-3">Save changes</button>
               <!-- END OF UPDATE -->
             </form>
           </div>
@@ -92,11 +93,10 @@
     <script>
           let appointmentIdField = document.getElementById('appointment-id');
           let searchButton = document.getElementById('search-btn');
-  
           // Event listener to enable/disable the search button when there is no input
           appointmentIdField.addEventListener('input', function() {
               if (appointmentIdField.value.trim() === '') {
-                  searchButton.classList.add('disabled');
+                searchButton.classList.add('disabled');
               } else {
               	searchButton.classList.remove('disabled');
               }
