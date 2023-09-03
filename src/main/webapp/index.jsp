@@ -2,14 +2,19 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="ISO-8859-1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The Jobs | Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  </head>
+<head>
+  <meta charset="ISO-8859-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Jobs | Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles/style.css">
+</head>
   <body>
+    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.jsp">The Jobs</a>
+      </div>
+    </nav>
     <div class="container mt-5">
       <div class="card text-center">
         <div class="card-header">
@@ -34,10 +39,12 @@
       <ul>
         <li>
           <a href="add-appointment.jsp">Create appointment</a>      
+        </li>
+        <li>
+          <a href="jobseeker-register.jsp">Jobseeker Sign up</a>
         </li>  
       </ul>
-    </div>
-    
+    </div>    
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

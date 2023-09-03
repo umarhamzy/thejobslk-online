@@ -2,19 +2,19 @@ package com.thejobslk.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.thejobslk.model.Appointment;
 import com.thejobslk.service.AppointmentService;
 
-/**
- * Servlet implementation class AppointmentController
- */
 public class AppointmentController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
@@ -26,12 +26,23 @@ public class AppointmentController extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-appointment.jsp");
-    requestDispatcher.forward(request, response);
+
+//    RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-appointment.jsp");
+//    requestDispatcher.forward(request, response);
+
+    String actionType = request.getParameter("actiontype");
+
+    if (actionType.equals("search-appointment")) {
+      getAppointment(request, response);
+    } else {
+      getAllAppointments(request, response);
+    }
+
   }
 
   @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     String actionType = request.getParameter("actiontype");
 
     if (actionType.equals("add-appointment")) {
@@ -45,6 +56,7 @@ public class AppointmentController extends HttpServlet {
 
   private void addAppointment(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
+    clearMessage();
 
     Appointment appointment = new Appointment();
     appointment.setAppointmentCountry(request.getParameter("appointmentCountry"));
@@ -55,7 +67,7 @@ public class AppointmentController extends HttpServlet {
 
     try {
       if (getAppointmentService().addAppointment(appointment)) {
-        message = "You have successfully booked an appointment!";
+        message = "You have successfully booked an appointment!</br>You will receive an email confirming your appointment.";
       } else {
         message = "Something went wrong!";
       }
@@ -69,19 +81,105 @@ public class AppointmentController extends HttpServlet {
     requestDispatcher.forward(request, response);
   }
 
-  private void editAppointment(HttpServletRequest request, HttpServletResponse response) {
+  private void editAppointment(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    clearMessage();
+
+    Appointment appointment = new Appointment();
+
+    appointment.setAppointmentId(Integer.parseInt(request.getParameter("appointmentId")));
+    appointment.setAppointmentCountry(request.getParameter("appointmentCountry"));
+    appointment.setAppointmentJob(request.getParameter("appointmentJob"));
+    appointment.setAppointmentDate(request.getParameter("appointmentDate"));
+    appointment.setAppointmentTime(request.getParameter("appointmentTime"));
+    appointment.setAppointmentDescription(request.getParameter("appointmentDescription"));
+
+    try {
+      if (getAppointmentService().editAppointment(appointment)) {
+        message = "Your appointment is rescheduled to: " + appointment.getAppointmentDate() + " at "
+            + appointment.getAppointmentTime();
+      } else {
+        message = "Something went wrong trying to edit your changes!";
+      }
+    } catch (ClassNotFoundException | SQLException e) {
+      message = e.getMessage();
+
+    }
+
+    request.setAttribute("feedback", message);
+    RequestDispatcher requestDispatcher = request.getRequestDispatcher("search-and-update-appointment.jsp");
+    requestDispatcher.forward(request, response);
+  }
+
+  private void deleteAppointment(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    clearMessage();
+
+    int appointmentId = Integer.parseInt(request.getParameter("appointmentId"));
+
+    try {
+      if (getAppointmentService().deleteAppointment(appointmentId)) {
+        message = "Your scheduled appointment was cancelled!<br>You can book one anytime, we're ready to serve you!";
+      } else {
+        message = "Something went wrong trying to cancel your appointment!";
+      }
+    } catch (ClassNotFoundException | SQLException e) {
+      message = e.getMessage();
+    }
+
+    HttpSession session = request.getSession();
+    session.setAttribute("feedbackDelete", message);
+    response.sendRedirect("getappointment?actiontype=all");
+  }
+
+  private void getAppointment(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    clearMessage();
+
+    int appointmentId = Integer.parseInt(request.getParameter("appointmentId"));
+
+    try {
+      Appointment appointment = getAppointmentService().getAppointment(appointmentId);
+      if (appointment.getAppointmentId() > 0) {
+        request.setAttribute("appointment", appointment);
+      } else {
+        message = "No such record found";
+      }
+    } catch (ClassNotFoundException | SQLException e) {
+      message = e.getMessage();
+    }
+    request.setAttribute("feedback", message);
+
+    RequestDispatcher requestDispatcher = request.getRequestDispatcher("search-and-update-appointment.jsp");
+    requestDispatcher.forward(request, response);
 
   }
 
-  private void deleteAppointment(HttpServletRequest request, HttpServletResponse response) {
+  private void getAllAppointments(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+
+    clearMessage();
+
+    List<Appointment> appointments = new ArrayList<Appointment>();
+
+    try {
+      appointments = getAppointmentService().getAllAppointments();
+
+      if (!(appointments.size() > 0)) {
+        message = "No records exist";
+      }
+    } catch (ClassNotFoundException | SQLException e) {
+      message = e.getMessage();
+    }
+
+    request.setAttribute("appointments", appointments);
+    request.setAttribute("feedback", message);
+
+    RequestDispatcher requestDispatcher = request.getRequestDispatcher("view-all-and-delete-appointment.jsp");
+    requestDispatcher.forward(request, response);
 
   }
 
-  private void getAppointment(HttpServletRequest request, HttpServletResponse response) {
-
-  }
-
-  private void getAllAppointments(HttpServletRequest request, HttpServletResponse response) {
-
+  private void clearMessage() {
+    message = "";
   }
 }

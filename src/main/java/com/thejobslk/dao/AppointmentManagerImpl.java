@@ -27,27 +27,34 @@ public class AppointmentManagerImpl implements AppointmentManager {
 
   @Override
   public boolean addAppointment(Appointment appointment) throws SQLException, ClassNotFoundException {
+    // Establishing connection from getConnection() which has the implementation for
+    // establishing connection
     Connection connection = getConnection();
 
-    String query = "INSERT INTO appointment (appointment_country, appointment_job, appointment_date, appointment_time, appointment_description, jobseeker_id, consultant_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    // Writing the query to execute
+    String query = "INSERT INTO appointment (appointment_country, appointment_job, appointment_date, appointment_time, appointment_description, jobseeker_id) VALUES (?, ?, ?, ?, ?, ?)";
 
     // Using PreparedStatement instead of normal Statement to prevent SQL injection
+    // !VERY IMPORTANT
     PreparedStatement preparedStatement = connection.prepareStatement(query);
 
+    // Adding below entries to the database appointment table with data user
+    // provides
     preparedStatement.setString(1, appointment.getAppointmentCountry());
     preparedStatement.setString(2, appointment.getAppointmentJob());
     preparedStatement.setString(3, appointment.getAppointmentDate());
     preparedStatement.setString(4, appointment.getAppointmentTime());
     preparedStatement.setString(5, appointment.getAppointmentDescription());
     preparedStatement.setInt(6, 1);
-    preparedStatement.setInt(7, 1);
-    // Above 2 statements hardcoded till concrete implementation - TO BE REMOVED!
+    // Above statement is hardcoded till concrete implementation - TO BE REMOVED!
 
+    // Checking if the query was executed. If 1, it is executed, if 0, not executed
     boolean result = false;
     if (preparedStatement.executeUpdate() > 0) {
       result = true;
     }
 
+    // Closing the query and connection VERY IMPORTANT!
     preparedStatement.close();
     connection.close();
 
@@ -58,7 +65,7 @@ public class AppointmentManagerImpl implements AppointmentManager {
   public boolean editAppointment(Appointment appointment) throws SQLException, ClassNotFoundException {
     Connection connection = getConnection();
 
-    String query = "UPDATE appointment SET appointment_country=?, appointment_job=?, appointment_date=?, appointment_time=?, appointment_description=?, jobseeker_id=?, consultant_id=? WHERE appointment_id=?";
+    String query = "UPDATE appointment SET appointment_country=?, appointment_job=?, appointment_date=?, appointment_time=?, appointment_description=?, jobseeker_id=? WHERE appointment_id=?";
 
     PreparedStatement preparedStatement = connection.prepareStatement(query);
 
@@ -67,9 +74,8 @@ public class AppointmentManagerImpl implements AppointmentManager {
     preparedStatement.setString(3, appointment.getAppointmentDate());
     preparedStatement.setString(4, appointment.getAppointmentTime());
     preparedStatement.setString(5, appointment.getAppointmentDescription());
-    preparedStatement.setInt(6, appointment.getJobseekerId());
-    preparedStatement.setInt(7, appointment.getConsultantId());
-    preparedStatement.setInt(8, appointment.getAppointmentId());
+    preparedStatement.setInt(6, 1);
+    preparedStatement.setInt(7, appointment.getAppointmentId());
 
     boolean result = false;
 
@@ -138,6 +144,8 @@ public class AppointmentManagerImpl implements AppointmentManager {
 
   @Override
   public List<Appointment> getAllAppointments() throws SQLException, ClassNotFoundException {
+    // Initializing the connection to Database from getConnection which has the
+    // implementation to get connection
     Connection connection = getConnection();
 
     String query = "SELECT * FROM appointment";
@@ -145,12 +153,17 @@ public class AppointmentManagerImpl implements AppointmentManager {
     // Using normal Statement here as this query doesn't require any parameters.
     Statement statement = connection.createStatement();
 
+    // Creating an arraylist to store all the rows in the table
     List<Appointment> appointments = new ArrayList<Appointment>();
 
     ResultSet resultSet = statement.executeQuery(query);
+
     while (resultSet.next()) {
+      // Create new instance of Appointment
       Appointment appointment = new Appointment();
 
+      // Setting relevent setters with data obtained from service layer, which gets
+      // data from controller.
       appointment.setAppointmentId(resultSet.getInt("appointment_id"));
       appointment.setAppointmentCountry(resultSet.getString("appointment_country"));
       appointment.setAppointmentJob(resultSet.getString("appointment_job"));
@@ -158,10 +171,12 @@ public class AppointmentManagerImpl implements AppointmentManager {
       appointment.setAppointmentTime(resultSet.getString("appointment_time"));
       appointment.setAppointmentDescription(resultSet.getString("appointment_description"));
       appointment.setJobseekerId(resultSet.getInt(resultSet.getInt("jobseeker_id")));
-      appointment.setConsultantId(resultSet.getInt(resultSet.getInt("consultant_id")));
+//      appointment.setConsultantId(resultSet.getInt(resultSet.getInt("consultant_id")));
 
       appointments.add(appointment);
     }
+
+    // Closing the query and connection VERY IMPORTANT!
     statement.close();
     connection.close();
 

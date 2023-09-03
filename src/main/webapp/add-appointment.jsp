@@ -12,10 +12,15 @@
     <link rel="stylesheet" href="styles/style.css">
   </head>
   <body>
+    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.jsp">The Jobs</a>
+      </div>
+    </nav>
     <div class="container">
       <h2 class="text-center my-5">Your journey is our prime vision!</h2>
       <div class="card mb-5" style="max-width: 1100px; margin-inline: auto">
-      <!-- Nav bar header -->
+      <!-- Card header -->
         <div class="card-header">
           <ul class="nav nav-tabs card-header-tabs justify-content-center">
             <li class="nav-item">
@@ -29,7 +34,7 @@
             </li>
           </ul>
         </div>
-        <!-- End of Nav bar header -->
+        <!-- End of Card header -->
         <div class="card-body">
           <h5 class="card-title text-center mt-5">Get expert advice from our range of consultants!</h5>
           
@@ -65,7 +70,6 @@
         </div>
       </div> 
     </div>
-    
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     $(document).ready(function() {
