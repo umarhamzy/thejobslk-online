@@ -28,22 +28,24 @@
             <h5 class="text-center my-3">Login as Consultant</h5>
           </div>
           <div class="card-body">
-            <form>
+            <form action="consultantmanager" method="post">
+              <p class="text-danger text-center mb-3" style="font-weight: 600">${errorFeedback}</p>
               <div class="mb-3">
                 <label for="username" class="form-label">Username<span class="text-danger">&nbsp;*</span></label>
-                <input type="text" class="form-control" id="username" name="username" required>
+                <input type="text" class="form-control" id="username" name="consultantUsername" required>
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label">Password<span class="text-danger">&nbsp;*</span></label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <input type="password" class="form-control" id="password" name="consultantPassword" required>
               </div>
               <div class="d-grid gap-2 col-6 mx-auto">
-                <button class="btn btn-dark py-3" type="button">Sign In</button>
+                <input type="hidden" name="actiontype" value="login-consultant">
+                <button type="submit" class="btn btn-dark py-3">Sign In</button>
               </div>
             </form>
           </div>
           <div class="card-footer text-center">
-            <p class="my-3"><small>Please use the Login credentials provided to you by the Admin</small></p>
+            <p class="my-3"><small>Please use the Login credentials provided to you by System Admin</small></p>
           </div>
         </div>
       </div>

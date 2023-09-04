@@ -16,7 +16,7 @@
     <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
       <div class="container">
         <a class="navbar-brand" href="index.jsp">The Jobs</a>
-        <a href="getjobseeker?actiontype=logout-jobseeker">Logout</a>
+        <a class="btn btn-light" href="getjobseeker?actiontype=logout-jobseeker">Logout</a>
       </div>
     </nav>
     <div class="container">
@@ -32,7 +32,7 @@
               <a class="nav-link" href="search-and-update-appointment.jsp">Search Appointment</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="getappointment?actiontype=getall">View all Appointments</a>
+              <a class="nav-link" href="getappointment?actiontype=get-all-delete-each">View all Appointments</a>
             </li>
           </ul>
         </div>

@@ -16,21 +16,15 @@
     <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
       <div class="container">
         <a class="navbar-brand" href="index.jsp">The Jobs</a>
-        <a class="btn btn-light" href="getjobseeker?actiontype=logout-jobseeker">Logout</a>
+        <a class="btn btn-light" href="getconsultant?actiontype=logout-consultant">Logout</a>
       </div>
     </nav>
     <div class="container">
-      <h2 class="text-center my-5">Your journey is our prime vision!</h2>
+      <h2 class="text-center my-5">Consultant Dashboard</h2>
       <div class="card mb-5" style="max-width: 1100px; margin-inline: auto">
         <!-- Nav bar header -->
         <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs justify-content-center">
-              <li class="nav-item">
-                <a class="nav-link" href="add-appointment.jsp">Book Appointment</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="search-and-update-appointment.jsp">Search Appointment</a>
-              </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="true" href="#">View all Appointments</a>
               </li>
@@ -53,7 +47,6 @@
             <table class="mt-5 table table-striped-columns table-bordered table-hover" style="margin-inline: auto">
               <thead class="table-group-divider">
                 <tr class="table-dark text-center">
-                  <th>Appointment Index</th>
                   <th>Destination Country</th>
                   <th>Preferred Job</th>
                   <th>Date</th>
@@ -65,7 +58,6 @@
               <tbody>
                   <c:forEach var="appointment" items="${appointments}">
                     <tr>
-                      <td style="font-weight:bold;">${appointment.appointmentId}</td>
                       <td>${appointment.appointmentCountry}</td>
                       <td>${appointment.appointmentJob}</td>
                       <td class="text-nowrap">${appointment.appointmentDate}</td>
@@ -74,8 +66,8 @@
                       <td>
                         <form action="appointmentmanager" method="post">
                           <input type="hidden" name="appointmentId" value="${appointment.appointmentId}"/>
-                          <input type="hidden" name="actiontype" value="delete-appointment"/>
-                          <button type="submit" class="btn btn-dark btn-sm">Cancel Appointment</button>
+                          <input type="hidden" name="actiontype" value="accept-appointment"/>
+                          <button type="submit" class="btn btn-dark btn-sm">Accept Appointment</button>
                         </form>
                       </td>
                     </tr>
