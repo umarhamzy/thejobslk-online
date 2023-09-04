@@ -32,7 +32,6 @@
           </div>
           <!-- End of Nav bar header -->
           <div class="card-body">
-            <h5 class="card-title text-center mt-5 mb-2">Get expert advice from our range of consultants!</h5>
             <%
               String feedbackDelete = (String) session.getAttribute("feedbackDelete");
               
