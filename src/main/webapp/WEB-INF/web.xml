@@ -22,6 +22,12 @@
   	<description></description>
   	<servlet-class>com.thejobslk.controller.JobseekerController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ManagerController</servlet-name>
+  	<display-name>ManagerController</display-name>
+  	<description></description>
+  	<servlet-class>com.thejobslk.controller.ManagerController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>AppointmentController</servlet-name>
   	<url-pattern>/appointmentmanager</url-pattern>
@@ -45,5 +51,13 @@
   <servlet-mapping>
   	<servlet-name>JobseekerController</servlet-name>
   	<url-pattern>/getjobseeker</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ManagerController</servlet-name>
+  	<url-pattern>/ManagerController</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ManagerController</servlet-name>
+  	<url-pattern>/getmanager</url-pattern>
   </servlet-mapping>
 </web-app>

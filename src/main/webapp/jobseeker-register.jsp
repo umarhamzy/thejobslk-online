@@ -21,36 +21,38 @@
   </nav>
   <div class="container mt-5">
     <div class="row justify-content-center">
-      <div class="col-md-6">
+      <div class="col-md-6 mb-5">
         <h3 class="text-center mb-5">Welcome to The Jobs!</h3>
         <div class="card">
           <div class="card-header">
             <h5 class="text-center my-3">We are excited to have you!</h5>
           </div>
           <div class="card-body">
-            <form>
+            <form action="jobseekermanager" method="post">
+              <p class="text-success text-center mb-5" style="font-weight: 600">${feedback}</p>
               <div class="mb-3">
-                <label for="firstName" class="form-label">First Name<span class="text-danger">&nbsp;*</span></label>
-                <input type="text" class="form-control" id="firstName" name="firstName" required>
+                <label for="jobseeker-firstname" class="form-label">First Name<span class="text-danger">&nbsp;*</span></label>
+                <input type="text" class="form-control" id="jobseeker-firstname" name="jobseekerFirstName" required>
               </div>
               <div class="mb-3">
-                <label for="lastName" class="form-label">Last Name<span class="text-danger">&nbsp;*</span></label>
-                <input type="text" class="form-control" id="lastName" name="lastName" required>
+                <label for="jobseeker-lastname" class="form-label">Last Name<span class="text-danger">&nbsp;*</span></label>
+                <input type="text" class="form-control" id="jobseeker-lastname" name="jobseekerLastName" required>
               </div>
               <div class="mb-3">
-                <label for="username" class="form-label">Username<span class="text-danger">&nbsp;*</span></label>
-                <input type="text" class="form-control" id="username" name="username" required>
+                <label for="jobseeker-username" class="form-label">Username<span class="text-danger">&nbsp;*</span></label>
+                <input type="text" class="form-control" id="jobseeker-username" name="jobseekerUsername" required>
               </div>
               <div class="mb-3">
-                <label for="password" class="form-label">Password<span class="text-danger">&nbsp;*</span></label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <label for="jobseeker-email" class="form-label">Email<span class="text-danger">&nbsp;*</span></label>
+                <input type="email" class="form-control" id="jobseeker-email" name="jobseekerEmail" required>
               </div>
               <div class="mb-3">
-                <label for="email" class="form-label">Email<span class="text-danger">&nbsp;*</span></label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <label for="jobseeker-password" class="form-label">Password<span class="text-danger">&nbsp;*</span></label>
+                <input type="password" class="form-control" id="jobseeker-password" name="jobseekerPassword" required>
               </div>
               <div class="d-grid gap-2 col-6 mx-auto">
-                <button class="btn btn-dark py-2" type="button">Sign Up</button>
+                <input type="hidden" name="actiontype" value="register-jobseeker">
+                <button type="submit" class="btn btn-dark py-2">Sign Up</button>
               </div>
             </form>
           </div>
