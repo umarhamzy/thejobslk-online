@@ -5,6 +5,7 @@ public class Jobseeker {
   private int jobseekerId;
   private String jobseekerFirstName;
   private String jobseekerLastName;
+  private String jobseekerUsername;
   private String jobseekerEmail;
   private String jobseekerPassword;
 
@@ -12,11 +13,12 @@ public class Jobseeker {
     // TODO Auto-generated constructor stub
   }
 
-  public Jobseeker(int jobseekerId, String jobseekerFirstName, String jobseekerLastName, String jobseekerEmail,
-      String jobseekerPassword) {
+  public Jobseeker(int jobseekerId, String jobseekerFirstName, String jobseekerLastName, String jobseekerUsername,
+      String jobseekerEmail, String jobseekerPassword) {
     this.jobseekerId = jobseekerId;
     this.jobseekerFirstName = jobseekerFirstName;
     this.jobseekerLastName = jobseekerLastName;
+    this.jobseekerUsername = jobseekerUsername;
     this.jobseekerEmail = jobseekerEmail;
     this.jobseekerPassword = jobseekerPassword;
   }
@@ -43,6 +45,14 @@ public class Jobseeker {
 
   public void setJobseekerLastName(String jobseekerLastName) {
     this.jobseekerLastName = jobseekerLastName;
+  }
+
+  public String getJobseekerUsername() {
+    return jobseekerUsername;
+  }
+
+  public void setJobseekerUsername(String jobseekerUsername) {
+    this.jobseekerUsername = jobseekerUsername;
   }
 
   public String getJobseekerEmail() {

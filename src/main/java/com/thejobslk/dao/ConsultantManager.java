@@ -1,5 +1,6 @@
 package com.thejobslk.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.thejobslk.model.Consultant;
@@ -15,4 +16,6 @@ public interface ConsultantManager {
   public Consultant getConsultant(int consultantId);
 
   public List<Consultant> getAllConsultants();
+
+  public Consultant getConsultantByUsername(String username) throws SQLException, ClassNotFoundException;
 }

@@ -27,15 +27,19 @@ public class AppointmentController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-//    RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-appointment.jsp");
-//    requestDispatcher.forward(request, response);
+// RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-appointment.jsp");
+// requestDispatcher.forward(request, response);
 
+    // checking to see what actiontype is received from the .jsp- accordingly we use
+    // the proper function to execute
     String actionType = request.getParameter("actiontype");
 
     if (actionType.equals("search-appointment")) {
       getAppointment(request, response);
-    } else {
-      getAllAppointments(request, response);
+    } else if (actionType.equals("get-all-delete-each")) {
+      getAllAppointmentsForJobSeeker(request, response);
+    } else if (actionType.equals("get-all-accept-each")) {
+      getAllAppointmentsForConsultant(request, response);
     }
 
   }
@@ -59,6 +63,10 @@ public class AppointmentController extends HttpServlet {
     clearMessage();
 
     Appointment appointment = new Appointment();
+
+    // setting values received from .jsp to model class setters.
+    // request.getParameter("value") where value should match the name attribute in
+    // jsp input fields.
     appointment.setAppointmentCountry(request.getParameter("appointmentCountry"));
     appointment.setAppointmentJob(request.getParameter("appointmentJob"));
     appointment.setAppointmentDate(request.getParameter("appointmentDate"));
@@ -75,8 +83,8 @@ public class AppointmentController extends HttpServlet {
       message = e.getMessage();
 
     }
-
     request.setAttribute("feedback", message);
+
     RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-appointment.jsp");
     requestDispatcher.forward(request, response);
   }
@@ -154,7 +162,7 @@ public class AppointmentController extends HttpServlet {
 
   }
 
-  private void getAllAppointments(HttpServletRequest request, HttpServletResponse response)
+  private void getAllAppointmentsForJobSeeker(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     clearMessage();
@@ -179,6 +187,32 @@ public class AppointmentController extends HttpServlet {
 
   }
 
+  private void getAllAppointmentsForConsultant(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+
+    clearMessage();
+
+    List<Appointment> appointments = new ArrayList<Appointment>();
+
+    try {
+      appointments = getAppointmentService().getAllAppointments();
+
+      if (!(appointments.size() > 0)) {
+        message = "No records exist";
+      }
+    } catch (ClassNotFoundException | SQLException e) {
+      message = e.getMessage();
+    }
+
+    request.setAttribute("appointments", appointments);
+    request.setAttribute("feedback", message);
+
+    RequestDispatcher requestDispatcher = request.getRequestDispatcher("view-all-and-accept-appointment.jsp");
+    requestDispatcher.forward(request, response);
+
+  }
+
+  // UTILITY
   private void clearMessage() {
     message = "";
   }

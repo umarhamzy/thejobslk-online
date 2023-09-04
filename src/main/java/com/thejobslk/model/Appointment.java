@@ -2,6 +2,7 @@ package com.thejobslk.model;
 
 public class Appointment {
 
+  // Variable initialization
   private int appointmentId;
   private String appointmentCountry;
   private String appointmentJob;
@@ -11,10 +12,12 @@ public class Appointment {
   private int jobseekerId;
   private int consultantId;
 
+  // Default constructor
   public Appointment() {
     // TODO Auto-generated constructor stub
   }
 
+  // Parameterised constructor
   public Appointment(int appointmentId, String appointmentCountry, String appointmentJob, String appointmentDate,
       String appointmentTime, String appointmentDescription, int jobseekerId, int consultantId) {
     this.appointmentId = appointmentId;
@@ -27,6 +30,7 @@ public class Appointment {
     this.consultantId = consultantId;
   }
 
+  // Getter and Setter pairs
   public int getAppointmentId() {
     return appointmentId;
   }

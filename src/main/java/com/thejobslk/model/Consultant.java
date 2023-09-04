@@ -5,6 +5,7 @@ public class Consultant {
   private int consultantId;
   private String consultantFirstName;
   private String consultantLastName;
+  private String consultantUsername;
   private String consultantEmail;
   private String consultantPassword;
   private String consultantCountry;
@@ -14,11 +15,12 @@ public class Consultant {
     // TODO Auto-generated constructor stub
   }
 
-  public Consultant(int consultantId, String consultantFirstName, String consultantLastName, String consultantEmail,
-      String consultantPassword, String consultantCountry, String consultantJobtype) {
+  public Consultant(int consultantId, String consultantFirstName, String consultantLastName, String consultantUsername,
+      String consultantEmail, String consultantPassword, String consultantCountry, String consultantJobtype) {
     this.consultantId = consultantId;
     this.consultantFirstName = consultantFirstName;
     this.consultantLastName = consultantLastName;
+    this.consultantUsername = consultantUsername;
     this.consultantEmail = consultantEmail;
     this.consultantPassword = consultantPassword;
     this.consultantCountry = consultantCountry;
@@ -47,6 +49,14 @@ public class Consultant {
 
   public void setConsultantLastName(String consultantLastName) {
     this.consultantLastName = consultantLastName;
+  }
+
+  public String getConsultantUsername() {
+    return consultantUsername;
+  }
+
+  public void setConsultantUsername(String consultantUsername) {
+    this.consultantUsername = consultantUsername;
   }
 
   public String getConsultantEmail() {

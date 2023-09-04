@@ -1,5 +1,6 @@
 package com.thejobslk.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.thejobslk.dao.ConsultantManager;
@@ -14,11 +15,11 @@ public class ConsultantService {
     // TODO Auto-generated constructor stub
   }
 
-  public static ConsultantService getConsultantServiceObj() {
+  public static ConsultantService getConsultantService() {
     if (consultantServiceObj == null) {
       synchronized (ConsultantService.class) {
         if (consultantServiceObj == null) {
-          return new ConsultantService();
+          consultantServiceObj = new ConsultantService();
         }
       }
     }
@@ -47,5 +48,19 @@ public class ConsultantService {
 
   public List<Consultant> getAllConsultants() {
     return getConsultantManager().getAllConsultants();
+  }
+
+  public Consultant authenticateConsultant(String username, String password)
+      throws ClassNotFoundException, SQLException {
+    ConsultantManager consultantManager = getConsultantManager();
+    Consultant consultant = consultantManager.getConsultantByUsername(username);
+
+    if (consultant != null && consultant.getConsultantPassword().equals(password)) {
+      // Authentication successful
+      return consultant;
+    } else {
+      // Authentication failed
+      return null;
+    }
   }
 }

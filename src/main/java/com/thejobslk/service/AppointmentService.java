@@ -9,11 +9,12 @@ import com.thejobslk.model.Appointment;
 
 public class AppointmentService {
 
-  // Singleton - Thread safe Singleton with double-checked locking
+  // Singleton - Thread safe Singleton with double-checked locking to reduce
+  // performance cost associated with Lazy initialization
   private static AppointmentService appointmentServiceObj;
 
   private AppointmentService() {
-    // TODO Auto-generated constructor stub
+
   }
 
   public static AppointmentService getAppointmentService() {

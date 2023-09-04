@@ -46,7 +46,9 @@ public class AppointmentManagerImpl implements AppointmentManager {
     preparedStatement.setString(4, appointment.getAppointmentTime());
     preparedStatement.setString(5, appointment.getAppointmentDescription());
     preparedStatement.setInt(6, 1);
-    // Above statement is hardcoded till concrete implementation - TO BE REMOVED!
+    // Above statement is hardcoded till concrete implementation - TO BE REMOVED
+    // ONCE PROPER IMPLEMENTATION IN PLACE!
+    // preparedStatement.setInt(6, appointment.getJobseekerId());
 
     // Checking if the query was executed. If 1, it is executed, if 0, not executed
     boolean result = false;
@@ -170,8 +172,8 @@ public class AppointmentManagerImpl implements AppointmentManager {
       appointment.setAppointmentDate(resultSet.getString("appointment_date"));
       appointment.setAppointmentTime(resultSet.getString("appointment_time"));
       appointment.setAppointmentDescription(resultSet.getString("appointment_description"));
-      appointment.setJobseekerId(resultSet.getInt(resultSet.getInt("jobseeker_id")));
-//      appointment.setConsultantId(resultSet.getInt(resultSet.getInt("consultant_id")));
+      appointment.setJobseekerId(resultSet.getInt("jobseeker_id"));
+      // appointment.setConsultantId(resultSet.getInt(resultSet.getInt("consultant_id")));
 
       appointments.add(appointment);
     }

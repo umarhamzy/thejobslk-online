@@ -1,13 +1,26 @@
 package com.thejobslk.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
+import com.thejobslk.dao.dbutil.DbDriverManager;
+import com.thejobslk.dao.dbutil.DbDriverManagerFactory;
 import com.thejobslk.model.Consultant;
 
 public class ConsultantManagerImpl implements ConsultantManager {
 
   public ConsultantManagerImpl() {
     // TODO Auto-generated constructor stub
+  }
+
+  private Connection getConnection() throws ClassNotFoundException, SQLException {
+    DbDriverManagerFactory driverFactory = new DbDriverManagerFactory();
+    DbDriverManager driverManager = driverFactory.getDbDriver("MySQL");
+
+    return driverManager.getConnection();
   }
 
   @Override
@@ -38,6 +51,40 @@ public class ConsultantManagerImpl implements ConsultantManager {
   public List<Consultant> getAllConsultants() {
     // TODO Auto-generated method stub
     return null;
+  }
+
+  @Override
+  public Consultant getConsultantByUsername(String username) throws SQLException, ClassNotFoundException {
+    Connection connection = getConnection();
+
+    String query = "SELECT * FROM consultant WHERE consultant_username = ?";
+
+    PreparedStatement preparedStatement = connection.prepareStatement(query);
+    preparedStatement.setString(1, username);
+
+    ResultSet resultSet = preparedStatement.executeQuery();
+
+    Consultant consultant = null;
+
+    if (resultSet.next()) {
+      // Create a Consultant object and populate it with data from the result set
+      consultant = new Consultant();
+      consultant.setConsultantId(resultSet.getInt("consultant_id"));
+      consultant.setConsultantFirstName(resultSet.getString("consultant_fname"));
+      consultant.setConsultantLastName(resultSet.getString("consultant_lname"));
+      consultant.setConsultantUsername(resultSet.getString("consultant_username"));
+      consultant.setConsultantEmail(resultSet.getString("consultant_email"));
+      consultant.setConsultantPassword(resultSet.getString("consultant_password"));
+      consultant.setConsultantCountry(resultSet.getString("consultant_country"));
+      consultant.setConsultantJobtype(resultSet.getString("consultant_jobtype"));
+    }
+
+    // Close resources
+    resultSet.close();
+    preparedStatement.close();
+    connection.close();
+
+    return consultant;
   }
 
 }
