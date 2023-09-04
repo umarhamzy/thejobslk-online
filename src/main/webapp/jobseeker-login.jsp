@@ -28,17 +28,18 @@
             <h5 class="text-center my-3">Login to book your appointments</h5>
           </div>
           <div class="card-body">
-            <form>
+            <form action="jobseekermanager" method="post">
               <div class="mb-3">
                 <label for="username" class="form-label">Username<span class="text-danger">&nbsp;*</span></label>
-                <input type="text" class="form-control" id="username" name="username" required>
+                <input type="text" class="form-control" id="username" name="jobseekerUsername" required>
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label">Password<span class="text-danger">&nbsp;*</span></label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <input type="password" class="form-control" id="password" name="jobseekerPassword" required>
               </div>
               <div class="d-grid gap-2 col-6 mx-auto">
-                <button class="btn btn-dark py-2" type="button">Sign In</button>
+                <input type="hidden" name="actiontype" value="login-jobseeker">
+                <button type="submit" class="btn btn-dark py-2">Sign In</button>
               </div>
             </form>
           </div>
