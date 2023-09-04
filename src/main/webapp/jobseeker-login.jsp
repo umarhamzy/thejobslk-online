@@ -29,6 +29,7 @@
           </div>
           <div class="card-body">
             <form action="jobseekermanager" method="post">
+              <p class="text-danger text-center mb-3" style="font-weight: 600">${errorFeedback}</p>
               <div class="mb-3">
                 <label for="username" class="form-label">Username<span class="text-danger">&nbsp;*</span></label>
                 <input type="text" class="form-control" id="username" name="jobseekerUsername" required>

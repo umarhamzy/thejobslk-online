@@ -43,7 +43,7 @@
               
               // Check if feedbackDelete is not null and display it
               if (feedbackDelete != null) {
-                out.println("<p class=\"text-success text-center mb-3\" style=\"font-weight: 600\">" + feedbackDelete + "</p>");
+                out.println("<p class=\"text-danger text-center mb-3\" style=\"font-weight: 600\">" + feedbackDelete + "</p>");
               
                 // Remove the attribute from the session
                 session.removeAttribute("feedbackDelete");

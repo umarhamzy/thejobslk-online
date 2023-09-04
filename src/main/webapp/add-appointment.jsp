@@ -16,6 +16,7 @@
     <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
       <div class="container">
         <a class="navbar-brand" href="index.jsp">The Jobs</a>
+        <a href="getjobseeker?actiontype=logout-jobseeker">Logout</a>
       </div>
     </nav>
     <div class="container">
@@ -56,7 +57,7 @@
             <input type="date" name="appointmentDate" id="appointment-date" 
             class="form-control mb-3" required></input>
             
-            <label for="appointment-time">Your available Time<span class="text-danger">&nbsp;*</span></label>
+            <label for="appointment-time">Your available Time <small>(24 Hour)</small><span class="text-danger">&nbsp;*</span></label>
             <input type="time" name="appointmentTime" id="appointment-time" 
             class="form-control mb-3" required></input>
             
@@ -72,20 +73,5 @@
       </div> 
     </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    $(document).ready(function() {
-  	    // Initialize the Datepicker
-  	    $('#appointment-date').datepicker({
-  	        format: 'yyyy-mm-dd', // Specify the date format
-  	        autoclose: true
-  	    });
-  
-  	    // Initialize the Timepicker
-  	    $('#appointment-time').timepicker({
-  	        showMeridian: false, // Use 24-hour format
-  	        minuteStep: 1
-  	    });
-  	});
-  </script>
   </body>
 </html>
