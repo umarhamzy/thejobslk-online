@@ -14,9 +14,9 @@
   <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-  <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-lg bg-dark mb-5 py-4" data-bs-theme="dark">
     <div class="container">
-      <a class="navbar-brand" href="index.jsp">The Jobs</a>
+      <a class="navbar-brand" href="index.jsp">The Jobs&trade;</a>
     </div>
   </nav>
   <div class="container mt-5">
@@ -30,29 +30,31 @@
           <div class="card-body">
             <form action="jobseekermanager" method="post">
               <p class="text-success text-center mb-5" style="font-weight: 600">${feedback}</p>
-              <div class="mb-3">
-                <label for="jobseeker-firstname" class="form-label">First Name<span class="text-danger">&nbsp;*</span></label>
-                <input type="text" class="form-control" id="jobseeker-firstname" name="jobseekerFirstName" required>
+              <div class="container">
+                <div class="mb-3">
+                  <label for="jobseeker-firstname" class="form-label">First Name<span class="text-danger">&nbsp;*</span></label>
+                  <input type="text" class="form-control" id="jobseeker-firstname" name="jobseekerFirstName" required>
+                </div>
+                <div class="mb-3">
+                  <label for="jobseeker-lastname" class="form-label">Last Name<span class="text-danger">&nbsp;*</span></label>
+                  <input type="text" class="form-control" id="jobseeker-lastname" name="jobseekerLastName" required>
+                </div>
+                <div class="mb-3">
+                  <label for="jobseeker-username" class="form-label">Username<span class="text-danger">&nbsp;*</span></label>
+                  <input type="text" class="form-control" id="jobseeker-username" name="jobseekerUsername" required>
+                </div>
+                <div class="mb-3">
+                  <label for="jobseeker-email" class="form-label">Email<span class="text-danger">&nbsp;*</span></label>
+                  <input type="email" class="form-control" id="jobseeker-email" name="jobseekerEmail" required>
+                </div>
+                <div class="mb-3">
+                  <label for="jobseeker-password" class="form-label">Password<span class="text-danger">&nbsp;*</span></label>
+                  <input type="password" class="form-control" id="jobseeker-password" name="jobseekerPassword" required>
+                </div>
+                  <div class="d-grid gap-2 col-6 mx-auto">
+                  <input type="hidden" name="actiontype" value="register-jobseeker">
+                  <button type="submit" class="btn btn-dark btn-lg py-2">Sign Up</button>
               </div>
-              <div class="mb-3">
-                <label for="jobseeker-lastname" class="form-label">Last Name<span class="text-danger">&nbsp;*</span></label>
-                <input type="text" class="form-control" id="jobseeker-lastname" name="jobseekerLastName" required>
-              </div>
-              <div class="mb-3">
-                <label for="jobseeker-username" class="form-label">Username<span class="text-danger">&nbsp;*</span></label>
-                <input type="text" class="form-control" id="jobseeker-username" name="jobseekerUsername" required>
-              </div>
-              <div class="mb-3">
-                <label for="jobseeker-email" class="form-label">Email<span class="text-danger">&nbsp;*</span></label>
-                <input type="email" class="form-control" id="jobseeker-email" name="jobseekerEmail" required>
-              </div>
-              <div class="mb-3">
-                <label for="jobseeker-password" class="form-label">Password<span class="text-danger">&nbsp;*</span></label>
-                <input type="password" class="form-control" id="jobseeker-password" name="jobseekerPassword" required>
-              </div>
-              <div class="d-grid gap-2 col-6 mx-auto">
-                <input type="hidden" name="actiontype" value="register-jobseeker">
-                <button type="submit" class="btn btn-dark py-2">Sign Up</button>
               </div>
             </form>
           </div>

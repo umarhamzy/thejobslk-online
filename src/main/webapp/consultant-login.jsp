@@ -14,12 +14,12 @@
   <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-  <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-lg bg-dark mb-5 py-4" data-bs-theme="dark">
     <div class="container">
-      <a class="navbar-brand" href="index.jsp">The Jobs</a>
+      <a class="navbar-brand" href="index.jsp">The Jobs&trade;</a>
     </div>
   </nav>
-  <div class="container mt-5">
+  <div class="container mt-5 py-5 my-auto ">
     <div class="row justify-content-center">
       <div class="col-md-6">
         <h3 class="text-center mb-5"></h3>
@@ -30,17 +30,19 @@
           <div class="card-body">
             <form action="consultantmanager" method="post">
               <p class="text-danger text-center mb-3" style="font-weight: 600">${errorFeedback}</p>
-              <div class="mb-3">
-                <label for="username" class="form-label">Username<span class="text-danger">&nbsp;*</span></label>
-                <input type="text" class="form-control" id="username" name="consultantUsername" required>
-              </div>
-              <div class="mb-3">
-                <label for="password" class="form-label">Password<span class="text-danger">&nbsp;*</span></label>
-                <input type="password" class="form-control" id="password" name="consultantPassword" required>
-              </div>
-              <div class="d-grid gap-2 col-6 mx-auto">
-                <input type="hidden" name="actiontype" value="login-consultant">
-                <button type="submit" class="btn btn-dark py-3">Sign In</button>
+                <div class="container">
+                <div class="mb-3">
+                  <label for="username" class="form-label">Username<span class="text-danger">&nbsp;*</span></label>
+                  <input type="text" class="form-control" id="username" name="consultantUsername" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password<span class="text-danger">&nbsp;*</span></label>
+                  <input type="password" class="form-control" id="password" name="consultantPassword" required>
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                  <input type="hidden" name="actiontype" value="login-consultant">
+                  <button type="submit" class="btn btn-dark btn-lg py-2">Sign In</button>
+                </div>
               </div>
             </form>
           </div>

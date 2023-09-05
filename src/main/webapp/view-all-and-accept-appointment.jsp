@@ -13,10 +13,10 @@
     <link rel="stylesheet" href="styles/style.css">
   </head>
   <body>
-    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-dark mb-5 py-4" data-bs-theme="dark">
       <div class="container">
-        <a class="navbar-brand" href="index.jsp">The Jobs</a>
-        <a class="btn btn-light" href="getconsultant?actiontype=logout-consultant">Logout</a>
+        <a class="navbar-brand" href="index.jsp">The Jobs&trade;</a>
+        <a class="btn btn-outline-light" href="getconsultant?actiontype=logout-consultant">Logout</a>
       </div>
     </nav>
     <div class="container">
@@ -33,35 +33,37 @@
           <!-- End of Nav bar header -->
           <div class="card-body">
             <%
-              String feedbackDelete = (String) session.getAttribute("feedbackDelete");
+              String feedbackAccept = (String) session.getAttribute("feedbackAccept");
               
-              // Check if feedbackDelete is not null and display it
-              if (feedbackDelete != null) {
-                out.println("<p class=\"text-danger text-center mb-3\" style=\"font-weight: 600\">" + feedbackDelete + "</p>");
-              
+              // Check if feedbackAccept is not null and display it
+              if (feedbackAccept != null) {
+                out.println("<p class=\"text-success text-center mt-4 fw-bolder\">" + feedbackAccept + "</p>");
+                    
                 // Remove the attribute from the session
-                session.removeAttribute("feedbackDelete");
+                session.removeAttribute("feedbackAccept");
               }
             %> 
             <table class="mt-5 table table-striped-columns table-bordered table-hover" style="margin-inline: auto">
               <thead class="table-group-divider">
                 <tr class="table-dark text-center">
+                  <th>Appointment #</th>
                   <th>Destination Country</th>
                   <th>Preferred Job</th>
-                  <th>Date</th>
-                  <th>Time</th>
+                  <th class="text-nowrap">Date <br><small>(DD-MM-YYYY)</small></th>
+                  <th class="text-nowrap">Time <small>(24H)</small></th>
                   <th>Description</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                   <c:forEach var="appointment" items="${appointments}">
-                    <tr>
+                    <tr class="text-center">
+                      <td>${appointment.appointmentId}</td>
                       <td>${appointment.appointmentCountry}</td>
                       <td>${appointment.appointmentJob}</td>
                       <td class="text-nowrap">${appointment.appointmentDate}</td>
                       <td>${appointment.appointmentTime}</td>
-                      <td>${appointment.appointmentDescription}</td>
+                      <td class="text-start">${appointment.appointmentDescription}</td>
                       <td>
                         <form action="appointmentmanager" method="post">
                           <input type="hidden" name="appointmentId" value="${appointment.appointmentId}"/>

@@ -72,7 +72,7 @@
               <div class="card mb-4">
                 <div class="card-body">
                   <h3 class="card-title">Job Placement</h3>
-                  <p class="card-text">Let us help you find the perfect job match.</p>
+                  <p class="card-text">Let us help you find the perfect job.</p>
                 </div>
               </div>
             </div>
@@ -90,7 +90,7 @@
             <div class="card mb-4">
               <div class="card-body">
                 <blockquote class="blockquote">
-                  <p>I got my dream job with the help of The Jobs. Their interview coaching was invaluable!</p>
+                  <p>I got my dream job with the help of your services. Your interview coaching was invaluable!</p>
                   <footer class="blockquote-footer">Alvin the Chipmunk</footer>
                 </blockquote>
               </div>

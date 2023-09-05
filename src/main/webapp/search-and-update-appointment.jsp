@@ -13,10 +13,10 @@
     <link rel="stylesheet" href="styles/style.css">
   </head>
   <body>
-    <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg bg-dark mb-5 py-4" data-bs-theme="dark">
       <div class="container">
-        <a class="navbar-brand" href="index.jsp">The Jobs</a>
-        <a class="btn btn-light" href="getjobseeker?actiontype=logout-jobseeker">Logout</a>
+        <a class="navbar-brand" href="index.jsp">The Jobs&trade;</a>
+        <a class="btn btn-outline-light" href="getjobseeker?actiontype=logout-jobseeker">Logout</a>
       </div>
     </nav>
     <div class="container">
@@ -43,7 +43,7 @@
             <!-- SEARCH -->
             <!-- Default method is get, therefore no need to explicitly mention -->
             <form action="getappointment" class="mt-5" style="max-width: 600px; margin-inline: auto">
-              <label for="appointment-id">Appointment Index</label>
+              <label for="appointment-id">Appointment #</label>
               <input type="number" name="appointmentId" id="appointment-id"
               class="form-control mb-3 center"></input>
               
@@ -55,10 +55,10 @@
             <hr style="max-width: 600px; margin-inline: auto">
             
             <!-- UPDATE -->
-            <p class="text-success text-center mb-3" style="font-weight: 600">${feedback}</p>
+            <p class="text-primary text-center mb-3" style="font-weight: 600">${feedback}</p>
             <form action="appointmentmanager" method="post" class="mt-5" style="max-width: 600px; margin-inline: auto">
               
-              <label for="appointment-id-update">Appointment Index</label>
+              <label for="appointment-id-update">Appointment #</label>
               <input type="number" name="appointmentId" id="appointment-id-update"
               class="form-control mb-3 center" placeholder="1" value="${appointment.appointmentId}" readonly/></input>       
               
@@ -90,18 +90,23 @@
           </div>
       </div>
     </div>
+    <footer class="bg-dark text-white text-center py-3">
+      <div class="container">
+        <p class="my-auto">&copy; 2023 The Jobs&trade;</p>        
+      </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-          let appointmentIdField = document.getElementById('appointment-id');
-          let searchButton = document.getElementById('search-btn');
-          // Event listener to enable/disable the search button when there is no input
-          appointmentIdField.addEventListener('input', function() {
-              if (appointmentIdField.value.trim() === '') {
-                searchButton.classList.add('disabled');
-              } else {
-              	searchButton.classList.remove('disabled');
-              }
-          });
-      </script>
+      let appointmentIdField = document.getElementById('appointment-id');
+      let searchButton = document.getElementById('search-btn');
+      // Event listener to enable/disable the search button when there is no input
+      appointmentIdField.addEventListener('input', function() {
+          if (appointmentIdField.value.trim() === '') {
+            searchButton.classList.add('disabled');
+          } else {
+          	searchButton.classList.remove('disabled');
+          }
+      });
+    </script>
   </body>
 </html>

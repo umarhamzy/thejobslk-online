@@ -14,9 +14,9 @@
   <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-  <nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-lg bg-dark mb-5 py-4" data-bs-theme="dark">
     <div class="container">
-      <a class="navbar-brand" href="index.jsp">The Jobs</a>
+      <a class="navbar-brand" href="index.jsp">The Jobs&trade;</a>
     </div>
   </nav>
   <div class="container mt-5">
@@ -29,16 +29,18 @@
           </div>
           <div class="card-body">
             <form>
-              <div class="mb-3">
-                <label for="username" class="form-label">Username<span class="text-danger">&nbsp;*</span></label>
-                <input type="text" class="form-control" id="username" name="username" required>
-              </div>
-              <div class="mb-3">
-                <label for="password" class="form-label">Password<span class="text-danger">&nbsp;*</span></label>
-                <input type="password" class="form-control" id="password" name="password" required>
+              <div class="container">
+                <div class="mb-3">
+                  <label for="username" class="form-label">Username<span class="text-danger">&nbsp;*</span></label>
+                  <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password<span class="text-danger">&nbsp;*</span></label>
+                  <input type="password" class="form-control" id="password" name="password" required>
+                </div>
               </div>
               <div class="d-grid gap-2 col-6 mx-auto">
-                <button class="btn btn-dark py-3" type="button">Sign In</button>
+                <button class="btn btn-dark btn-lg py-2" type="button">Sign In</button>
               </div>
             </form>
           </div>
