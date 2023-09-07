@@ -110,7 +110,7 @@ public class JobseekerManagerImpl implements JobseekerManager {
   public Jobseeker getJobseeker(int jobseekerId) throws SQLException, ClassNotFoundException {
     Connection connection = getConnection();
 
-    String query = "SELECT * FROM jobseeker WHERE jobseekerId=?";
+    String query = "SELECT * FROM jobseeker WHERE jobseeker_id=?";
 
     PreparedStatement preparedStatement = connection.prepareStatement(query);
 

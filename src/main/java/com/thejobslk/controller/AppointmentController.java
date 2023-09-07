@@ -27,9 +27,6 @@ public class AppointmentController extends HttpServlet {
   @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-// RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-appointment.jsp");
-// requestDispatcher.forward(request, response);
-
     // checking to see what actiontype is received from the .jsp- accordingly we use
     // the proper function to execute
     String actionType = request.getParameter("actiontype");
@@ -48,13 +45,16 @@ public class AppointmentController extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     String actionType = request.getParameter("actiontype");
-
+    // same as doGet, we identify the nature of request, and call the appropriate
+    // method accordingly.
     if (actionType.equals("add-appointment")) {
       addAppointment(request, response);
     } else if (actionType.equals("edit-appointment")) {
       editAppointment(request, response);
     } else if (actionType.equals("delete-appointment")) {
       deleteAppointment(request, response);
+    } else if (actionType.equals("accept-appointment")) {
+      acceptAppointment(request, response);
     }
   }
 
@@ -62,9 +62,10 @@ public class AppointmentController extends HttpServlet {
       throws ServletException, IOException {
     clearMessage();
 
+    // create an instance of appointment class
     Appointment appointment = new Appointment();
 
-    // setting values received from .jsp to model class setters.
+    // setting values received from .jsp to model's setter methods.
     // request.getParameter("value") where value should match the name attribute in
     // jsp input fields.
     appointment.setAppointmentCountry(request.getParameter("appointmentCountry"));
@@ -73,6 +74,7 @@ public class AppointmentController extends HttpServlet {
     appointment.setAppointmentTime(request.getParameter("appointmentTime"));
     appointment.setAppointmentDescription(request.getParameter("appointmentDescription"));
 
+    // upon successful booking, add a message-> set it to an attribute-> forward
     try {
       if (getAppointmentService().addAppointment(appointment)) {
         message = "You have successfully booked an appointment!</br>You will receive an email confirming your appointment.";
@@ -83,18 +85,21 @@ public class AppointmentController extends HttpServlet {
       message = e.getMessage();
 
     }
+    // setting message to an attribute called feedback
     request.setAttribute("feedback", message);
 
     RequestDispatcher requestDispatcher = request.getRequestDispatcher("add-appointment.jsp");
     requestDispatcher.forward(request, response);
   }
 
+  // upon successful edit, add a message-> set it to an attribute-> forward
   private void editAppointment(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     clearMessage();
-
+    // create an instance of appointment class
     Appointment appointment = new Appointment();
 
+    // set values received by getParameter
     appointment.setAppointmentId(Integer.parseInt(request.getParameter("appointmentId")));
     appointment.setAppointmentCountry(request.getParameter("appointmentCountry"));
     appointment.setAppointmentJob(request.getParameter("appointmentJob"));
@@ -136,7 +141,7 @@ public class AppointmentController extends HttpServlet {
 
     HttpSession session = request.getSession();
     session.setAttribute("feedbackDelete", message);
-    response.sendRedirect("getappointment?actiontype=all");
+    response.sendRedirect("getappointment?actiontype=get-all-delete-each");
   }
 
   private void getAppointment(HttpServletRequest request, HttpServletResponse response)
@@ -210,6 +215,23 @@ public class AppointmentController extends HttpServlet {
     RequestDispatcher requestDispatcher = request.getRequestDispatcher("view-all-and-accept-appointment.jsp");
     requestDispatcher.forward(request, response);
 
+  }
+
+  private void acceptAppointment(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    clearMessage();
+
+    // TODO - store list in session so I can track appointment status and have the
+    // corresponding Id buttons to disabled and textcontent as Accepted
+
+    int appointmentId = Integer.parseInt(request.getParameter("appointmentId"));
+
+    message = "You have accepted an appointment. Appointment Index: " + appointmentId
+        + "</br>Check corresponding Appointment # for more details.";
+
+    request.getSession().setAttribute("feedbackAccept", message);
+
+    response.sendRedirect("getappointment?actiontype=get-all-accept-each");
   }
 
   // UTILITY

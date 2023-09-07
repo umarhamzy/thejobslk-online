@@ -55,10 +55,10 @@ public class JobseekerService {
     Jobseeker jobseeker = jobseekerManager.getJobseekerByUsername(username);
 
     if (jobseeker != null && jobseeker.getJobseekerPassword().equals(password)) {
-      // Authentication successful
+      // authentication successful
       return jobseeker;
     } else {
-      // Authentication failed
+      // authentication failed
       return null;
     }
   }

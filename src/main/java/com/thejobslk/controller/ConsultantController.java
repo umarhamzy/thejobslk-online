@@ -39,6 +39,7 @@ public class ConsultantController extends HttpServlet {
     }
   }
 
+  // FOR LATER IMPLEMENTATION
 //  private void addConsultant(HttpServletRequest request, HttpServletResponse response) {
 //
 //  }

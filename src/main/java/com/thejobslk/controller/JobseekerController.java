@@ -195,7 +195,7 @@ public class JobseekerController extends HttpServlet {
       if (authenticatedJobseeker != null) {
         // If credentials are valid
         // Store user information in session
-        request.getSession().setAttribute("authenticatedUser", authenticatedJobseeker);
+        request.getSession().setAttribute("authenticatedJobseeker", authenticatedJobseeker);
 
         response.sendRedirect("add-appointment.jsp");
       } else {
