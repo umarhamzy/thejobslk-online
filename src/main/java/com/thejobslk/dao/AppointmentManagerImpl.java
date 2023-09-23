@@ -45,7 +45,7 @@ public class AppointmentManagerImpl implements AppointmentManager {
     preparedStatement.setString(3, appointment.getAppointmentDate());
     preparedStatement.setString(4, appointment.getAppointmentTime());
     preparedStatement.setString(5, appointment.getAppointmentDescription());
-    preparedStatement.setInt(6, 1);
+    preparedStatement.setInt(6, 4);
     // Above statement is hardcoded till concrete implementation - TO BE REMOVED
     // ONCE PROPER IMPLEMENTATION IN PLACE!
     // preparedStatement.setInt(6, appointment.getJobseekerId());
@@ -76,7 +76,7 @@ public class AppointmentManagerImpl implements AppointmentManager {
     preparedStatement.setString(3, appointment.getAppointmentDate());
     preparedStatement.setString(4, appointment.getAppointmentTime());
     preparedStatement.setString(5, appointment.getAppointmentDescription());
-    preparedStatement.setInt(6, 1);
+    preparedStatement.setInt(6, 4);
     preparedStatement.setInt(7, appointment.getAppointmentId());
 
     boolean result = false;

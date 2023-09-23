@@ -19,7 +19,7 @@
       <a class="navbar-brand" href="index.jsp">The Jobs&trade;</a>
     </div>
   </nav>
-  <div class="container mt-5">
+  <div class="container mt-5 py-5 my-auto ">
     <div class="row justify-content-center">
       <div class="col-md-6">
         <h3 class="text-center mb-5"></h3>
@@ -28,19 +28,21 @@
             <h5 class="text-center my-3">Login as Manager</h5>
           </div>
           <div class="card-body">
-            <form>
-              <div class="container">
+            <form action="managercontroller" method="post">
+              <p class="text-danger text-center mb-3" style="font-weight: 600">${errorFeedback}</p>
+                <div class="container">
                 <div class="mb-3">
                   <label for="username" class="form-label">Username<span class="text-danger">&nbsp;*</span></label>
-                  <input type="text" class="form-control" id="username" name="username" required>
+                  <input type="text" class="form-control" id="username" name="managerUsername" required>
                 </div>
                 <div class="mb-3">
                   <label for="password" class="form-label">Password<span class="text-danger">&nbsp;*</span></label>
-                  <input type="password" class="form-control" id="password" name="password" required>
+                  <input type="password" class="form-control" id="password" name="managerPassword" required>
                 </div>
-              </div>
-              <div class="d-grid gap-2 col-6 mx-auto">
-                <button class="btn btn-dark btn-lg py-2" type="button">Sign In</button>
+                <div class="d-grid gap-2 col-6 mx-auto">
+                  <input type="hidden" name="actiontype" value="login-manager">
+                  <button type="submit" class="btn btn-dark btn-lg py-2">Sign In</button>
+                </div>
               </div>
             </form>
           </div>
