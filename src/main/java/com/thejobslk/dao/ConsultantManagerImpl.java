@@ -24,9 +24,30 @@ public class ConsultantManagerImpl implements ConsultantManager {
   }
 
   @Override
-  public boolean addConsultant(Consultant consultant) {
-    // TODO Auto-generated method stub
-    return false;
+  public boolean addConsultant(Consultant consultant) throws SQLException, ClassNotFoundException {
+    Connection connection = getConnection();
+
+    String query = "INSERT INTO consultant (consultant_fname, consultant_lname, consultant_username, consultant_email, consultant_password, consultant_country, consultant_jobtype) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+    preparedStatement.setString(1, consultant.getConsultantFirstName());
+    preparedStatement.setString(2, consultant.getConsultantLastName());
+    preparedStatement.setString(3, consultant.getConsultantUsername());
+    preparedStatement.setString(4, consultant.getConsultantEmail());
+    preparedStatement.setString(5, consultant.getConsultantPassword());
+    preparedStatement.setString(6, consultant.getConsultantCountry());
+    preparedStatement.setString(7, consultant.getConsultantJobtype());
+
+    boolean result = false;
+    if (preparedStatement.executeUpdate() > 0) {
+      result = true;
+    }
+
+    preparedStatement.close();
+    connection.close();
+
+    return result;
   }
 
   @Override

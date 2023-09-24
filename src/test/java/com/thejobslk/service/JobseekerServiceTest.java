@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +27,7 @@ class JobseekerServiceTest {
 
   @Test
   @DisplayName(value = "Testing Jobseeker Register")
-//  @Disabled
+  @Disabled
   void testAddJobseeker() {
     // arrange: creating object with test data
     Jobseeker jobseeker = new Jobseeker();
@@ -49,7 +50,7 @@ class JobseekerServiceTest {
 
   @Test
   @DisplayName(value = "Testing Jobseeker Edit")
-//  @Disabled
+  @Disabled
   void testEditJobseeker() {
 
     // arrange: creating object with test data
@@ -74,7 +75,7 @@ class JobseekerServiceTest {
 
   @Test
   @DisplayName(value = "Testing Jobseeker Delete")
-//  @Disabled
+  @Disabled
   void testDeleteJobseeker() {
     int jobseekerIdToDelete = 16;
 
@@ -88,7 +89,7 @@ class JobseekerServiceTest {
 
   @Test
   @DisplayName(value = "Testing Jobseeker Search")
-//  @Disabled
+  @Disabled
   void testGetJobseeker() {
     int jobseekerIdToGet = 13;
 

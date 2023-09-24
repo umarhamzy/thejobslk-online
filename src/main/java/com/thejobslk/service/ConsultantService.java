@@ -30,7 +30,7 @@ public class ConsultantService {
     return new ConsultantManagerImpl();
   }
 
-  public boolean addConsultant(Consultant consultant) {
+  public boolean addConsultant(Consultant consultant) throws ClassNotFoundException, SQLException {
     return getConsultantManager().addConsultant(consultant);
   }
 

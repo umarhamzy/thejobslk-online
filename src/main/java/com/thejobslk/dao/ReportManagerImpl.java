@@ -25,8 +25,10 @@ public class ReportManagerImpl implements ReportManager {
   public int getNumberOfAppointments() throws ClassNotFoundException, SQLException {
     Connection connection = getConnection();
 
+    String query = "SELECT COUNT(*) FROM appointment";
+
     int numberOfAppointments = 0;
-    try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM appointment")) {
+    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
       try (ResultSet resultSet = preparedStatement.executeQuery()) {
         if (resultSet.next()) {
           numberOfAppointments = resultSet.getInt(1);
@@ -39,8 +41,12 @@ public class ReportManagerImpl implements ReportManager {
   @Override
   public int getNumberOfJobSeekers() throws ClassNotFoundException, SQLException {
     Connection connection = getConnection();
+
+    String query = "SELECT COUNT(*) FROM jobseeker";
+
     int numberOfJobseekers = 0;
-    try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM jobseeker")) {
+
+    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
       try (ResultSet resultSet = preparedStatement.executeQuery()) {
         if (resultSet.next()) {
           numberOfJobseekers = resultSet.getInt(1);
@@ -54,8 +60,11 @@ public class ReportManagerImpl implements ReportManager {
   public int getNumberOfConsultants() throws ClassNotFoundException, SQLException {
     Connection connection = getConnection();
 
+    String query = "SELECT COUNT(*) FROM consultant";
+    
     int numberOfConsultants = 0;
-    try (PreparedStatement preparedStatement = connection.prepareStatement("SELECT COUNT(*) FROM consultant")) {
+
+    try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
       try (ResultSet resultSet = preparedStatement.executeQuery()) {
         if (resultSet.next()) {
           numberOfConsultants = resultSet.getInt(1);
